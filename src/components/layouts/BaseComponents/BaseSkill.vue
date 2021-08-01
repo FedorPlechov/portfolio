@@ -2,7 +2,7 @@
   <div class="skill_box">
     <div class="name_skill">{{ skill.name }}</div>
     <div class="line_rating">
-      <div :style="{ width: skill.rating + '%'}" class="rating"><div class="block"></div></div>
+      <div :style="{ width: skill.rating + '%'}" class="rating"><div class="block" :class="{'animation-block':animation}"></div></div>
       <div v-if="!forMobile" class="percents">{{ skill.rating }}%</div>
     </div>
   </div>
@@ -21,17 +21,26 @@ export default {
           rating: "100"
         }
       }
+    },
+    queue: {
+      type: Number
     }
   },
   data() {
     return {
-      forMobile: false
+      forMobile: false,
+      animation: false
     }
   },
   created() {
     if (window.innerWidth < 645) {
       this.forMobile = true;
     }
+  },
+  mounted() {
+    setTimeout(()=> {
+      this.animation = true;
+    }, this.queue*500)
   }
 }
 </script>
@@ -72,7 +81,10 @@ $my-blue: #04c2c9;
   .block {
     background-color: #00A1A7;
     height: 100%;
-    animation: show-skill 2.5s ease-out;
+    width: 0;
+  }
+  .animation-block {
+    animation: show-skill 2.5s ease-out forwards;
   }
 }
 .percents {

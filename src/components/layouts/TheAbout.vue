@@ -26,11 +26,11 @@
         </div>
         <div class="skills_rating">
           <div>
-            <base-skill :skill="{name:'CSS', rating:'90'}"></base-skill>
-            <base-skill :skill="{name:'HTML', rating:'90'}"></base-skill>
-            <base-skill :skill="{name:'JavaScript', rating:'70'}"></base-skill>
-            <base-skill :skill="{name:'Vue', rating:'70'}"></base-skill>
-            <base-skill :skill="{name:'UI', rating:'60'}"></base-skill>
+            <base-skill :skill="{name:'CSS', rating:'90'}" :queue=1></base-skill>
+            <base-skill :skill="{name:'HTML', rating:'90'}" :queue=2></base-skill>
+            <base-skill :skill="{name:'JavaScript', rating:'70'}" :queue=3></base-skill>
+            <base-skill :skill="{name:'Vue', rating:'70'}" :queue=4></base-skill>
+            <base-skill :skill="{name:'UI', rating:'60'}" :queue=5></base-skill>
           </div>
         </div>
       </div>
