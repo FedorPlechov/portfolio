@@ -3,33 +3,55 @@
     <h1 class="title">ABOUT</h1>
     <div class="line"></div>
     <div class="icons_skills">
-      <div class="icon">
-        <div class="icon_skill"></div>
-        <h3>Skill</h3>
-        <p>direction</p></div>
-      <div class="icon">
-        <div class="icon_skill"></div>
-        <h3>Skill</h3>
-        <p>direction</p></div>
-      <div class="icon">
-        <div class="icon_icon_skill"></div>
-        <h3>Skill</h3>
-        <p>direction</p></div>
-      <div class="icon">
-        <div class="icon_icon_skill"></div>
-        <h3>Skill</h3>
-        <p>direction</p></div>
+      <base-icons description="Fast load times and lag free interaction, my highest priority." title="Fast">
+        <div class="icon speed"></div>
+      </base-icons>
+      <base-icons description="Strong preference for easy to use, intuitive UX/UI." title="Intuitive">
+        <div class="icon intuitive"></div>
+      </base-icons>
+      <base-icons description="My layouts will work on any device, big or small." title="Responsive">
+        <div class="icon responsive "></div>
+      </base-icons>
+      <base-icons description="Websites don't have to be static, I love making pages come to life." title="Dynamic">
+        <div class="icon dynamic "></div>
+      </base-icons>
     </div>
+    <div class="info">
+      <div class="avatar">
+        <div class="picture"></div>
+          <h3>Who this guy?</h3>
+          <p class="answer">I'm a Front-End Developer. I have serious passion for UI effects, animations and creating
+            intuitive, dynamic user experiences.
+            Let's make something special.</p>
+        </div>
+        <div class="skills_rating">
+          <div>
+            <base-skill :skill="{name:'CSS', rating:'90'}"></base-skill>
+            <base-skill :skill="{name:'HTML', rating:'90'}"></base-skill>
+            <base-skill :skill="{name:'JavaScript', rating:'70'}"></base-skill>
+            <base-skill :skill="{name:'Vue', rating:'70'}"></base-skill>
+            <base-skill :skill="{name:'UI', rating:'60'}"></base-skill>
+          </div>
+        </div>
+      </div>
   </section>
 </template>
 
 <script>
+import BaseIcons from "./BaseComponents/BaseIcons";
+import BaseSkill from "./BaseComponents/BaseSkill";
+
 export default {
-  name: "TheAbout"
+  name: "TheAbout",
+  components: {
+    BaseIcons,
+    BaseSkill
+  }
 }
+
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .about {
   display: flex;
   flex-flow: column nowrap;
@@ -44,6 +66,66 @@ export default {
 }
 
 .icons_skills {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 0.7rem;
+}
+
+.icon {
+  margin: auto auto;
+  position: relative;
+  z-index: 10;
+  height: 80%;
+  width: 70%;
+
+  &.speed {
+    margin: 0 auto;
+    height: 120%;
+    background: url("../../assets/icons/speed-128.png") no-repeat center/cover;
+    position: relative;
+    top: -5px;
+  }
+
+  &.intuitive {
+    margin: 0 auto;
+    height: 120%;
+    background: url("../../assets/icons/light-bulb-5-128.png") no-repeat center/cover;
+  }
+
+  &.responsive {
+    margin: 0 auto;
+    height: 120%;
+    position: relative;
+    top: -5px;
+    background: url("../../assets/icons/tablet-2-128.png") no-repeat center/cover;
+  }
+
+  &.dynamic {
+    margin: 0 auto;
+    height: 120%;
+    background: url("../../assets/icons/rocket-128.png") no-repeat center/cover;
+  }
 
 }
+.avatar{
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: center;
+  align-items: center;
+  .picture {
+    background: url(../../assets/Hzhe9SZd0zc.jpg) no-repeat center/cover;
+    width: 100%;
+    height: 540px;
+  }
+  .answer {
+    text-align: center;
+
+  }
+
+}
+.skills_rating {
+  margin: 4rem 2rem 0;
+}
+
+
 </style>
