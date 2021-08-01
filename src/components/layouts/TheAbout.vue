@@ -57,11 +57,17 @@ export default {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  padding: 70px 0;
 
   .line {
     height: 3px;
-    width: 2rem;
-    background-color: black;
+    width: 4rem;
+    background-color: #444649;
+  }
+  .title {
+    color: #444649;
+    font-size: 1.8rem;
+    margin-bottom: 1rem ;
   }
 }
 
@@ -124,7 +130,7 @@ export default {
 
 }
 .skills_rating {
-  margin: 4rem 2rem 0;
+  padding: 3rem 1rem 0;
 }
 
 

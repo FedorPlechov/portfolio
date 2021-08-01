@@ -2,8 +2,8 @@
   <div class="skill_box">
     <div class="name_skill">{{ skill.name }}</div>
     <div class="line_rating">
-      <div :style="{ width: skill.rating + '%'}" class="rating"></div>
-      <div class="percents">{{ skill.rating }}%</div>
+      <div :style="{ width: skill.rating + '%'}" class="rating"><div class="block"></div></div>
+      <div v-if="!forMobile" class="percents">{{ skill.rating }}%</div>
     </div>
   </div>
 </template>
@@ -21,6 +21,16 @@ export default {
           rating: "100"
         }
       }
+    }
+  },
+  data() {
+    return {
+      forMobile: false
+    }
+  },
+  created() {
+    if (window.innerWidth < 645) {
+      this.forMobile = true;
     }
   }
 }
@@ -57,14 +67,26 @@ $my-blue: #04c2c9;
 }
 
 .rating {
-  background-color: #00A1A7;
   height: 100%;
-  margin-right: 15px;
+
+  .block {
+    background-color: #00A1A7;
+    height: 100%;
+    animation: show-skill 2.5s ease-out;
+  }
 }
 .percents {
-  padding-right: 15px ;
+  padding:0 15px ;
   font-size: 0.8rem;
   color:#666666
+}
+@keyframes show-skill {
+  from {
+    width: 0;
+}
+  to {
+    width: 100%;
+  }
 }
 
 </style>
