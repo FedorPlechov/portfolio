@@ -4,17 +4,20 @@
     <div class="line"></div>
     <div class="toggles">
       <div id="square" :style="{ width: tweenedNumber + 'px', left: tweenedLeft +'px'}" class="choose-animation"></div>
-      <button :style="{color: isChoose0? 'white':'black'}" class="toggle" @click="toggleButtons">All</button>
-      <button :style="{color: isChoose1? 'white':'black'}" class="toggle" @click="toggleButtons">My pet projects
+      <button :style="{color: isChoose0? 'white':'black'}" class="toggle" @click="toggleButtons1">All</button>
+      <button :style="{color: isChoose1 || color.btw1? 'white':'black'}" class="toggle" @click="toggleButtons2">My pet
+        projects
       </button>
-      <button :style="{color: isChoose2? 'white':'black'}" class="toggle" @click="toggleButtons">Layouts</button>
-      <button :style="{color: isChoose3? 'white':'black'}" class="toggle" @click="toggleButtons">JavaScript</button>
+      <button :style="{color: isChoose2 || color.btw2? 'white':'black'}" class="toggle" @click="toggleButtons3">Layouts
+      </button>
+      <button :style="{color: isChoose3? 'white':'black'}" class="toggle" @click="toggleButtons4">JavaScript</button>
     </div>
   </section>
 </template>
 
 <script>
 import gsap from 'gsap';
+
 export default {
   name: "TheProjects",
   data() {
@@ -24,6 +27,8 @@ export default {
       width: [],
       tweenedNumber: 0,
       tweenedLeft: 0,
+      buttons: [],
+      color: {btw1: false, btw2: false}
     }
   },
   computed: {
@@ -47,12 +52,57 @@ export default {
       const left = button.getBoundingClientRect().left - document.querySelector(".toggle:first-of-type").getBoundingClientRect().left;
       this.number = width;
       this.left = left;
+    },
+    setTimOutColorBtw1(delay) {
+      this.color.btw1 = true;
+      setTimeout(() => {
+        this.color.btw1 = false
+      }, delay)
+    },
+    setTimOutColorBtw2(delay) {
+      this.color.btw2 = true;
+      setTimeout(() => {
+        this.color.btw2 = false
+      }, delay)
+    },
+    toggleButtons4(event) {
+      if (this.number === this.width[0]) {
+        this.setTimOutColorBtw1(100)
+        this.setTimOutColorBtw2(350)
+        this.toggleButtons(event)
+      } else if (this.number === this.width[1]){
+        this.setTimOutColorBtw2(350)
+        this.toggleButtons(event)} else
+      this.toggleButtons(event)
+    },
+    toggleButtons1(event) {
+      if (this.number === this.width[3]) {
+        this.setTimOutColorBtw2(100)
+        this.setTimOutColorBtw1(350)
+        this.toggleButtons(event)
+      } else if (this.number === this.width[2]){
+        this.setTimOutColorBtw1(350)
+        this.toggleButtons(event)} else
+        this.toggleButtons(event)
+    },
+    toggleButtons2(event) {
+      if (this.number === this.width[3]) {
+        this.setTimOutColorBtw2(250)
+        this.toggleButtons(event)
+      } else this.toggleButtons(event)
+    },
+    toggleButtons3(event) {
+      if (this.number === this.width[0]) {
+        this.setTimOutColorBtw1(250)
+        this.toggleButtons(event)
+      } else this.toggleButtons(event)
     }
+
   },
   watch: {
     number (newValue) {
       gsap.to(this.$data, {
-        duration: 1,
+        duration: 0.5,
         ease: 'circ.out',
         tweenedNumber: newValue
       })
@@ -60,7 +110,7 @@ export default {
     ,
     left (newValue) {
       gsap.to(this.$data, {
-        duration: 1,
+        duration: 0.7,
         ease: 'circ.out',
         tweenedLeft: newValue
       })
@@ -69,14 +119,18 @@ export default {
   mounted() {
     const elements = document.querySelectorAll('.toggle')
     for (let i = 0; i < elements.length; i++) {
-      this.width.push(elements[i].getBoundingClientRect().width)
+      this.width.push(elements[i].getBoundingClientRect().width);
+      if (i === 1 || i === 2)
+        this.buttons.push(elements[i].getBoundingClientRect().left - elements[0].getBoundingClientRect().left)
     }
     this.number = this.width[0];
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$nice-color: rgb(227, 27, 109);
 .my-projects {
   display: flex;
   flex-flow: column nowrap;
@@ -112,6 +166,10 @@ export default {
     color: #444649;
     font-size: 1rem;
     padding: 0 0.6rem;
+    &:first-of-type {
+      padding-left: 1.2rem ;
+      padding-right: 1.2rem;
+    }
   }
 
   .first {
@@ -121,7 +179,7 @@ export default {
 }
 
 .choose-animation {
-  background-color: red;
+  background-color: $nice-color;
   position: absolute;
   height: 30px;
   top: -5px;
