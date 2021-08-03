@@ -29,6 +29,7 @@
 
 <script>
 import TheNavMenu from "./TheNavMenu";
+
 export default {
   name: "TheHeader",
   components: {
@@ -87,7 +88,7 @@ export default {
       ctx3.fillStyle = 'rgba(0,0,0,' + random(1, 30) / 100 + ')';
       ctx3.fillRect(0, 0, w, h);
       ctx3.globalCompositeOperation = 'source-over';
-    };
+    }
 
     function createRainTrough() {
       for (var i = 0; i < rainthroughnum; i++) {
@@ -133,7 +134,7 @@ export default {
         };
         lightning.push(single);
       }
-    };
+    }
 
     function drawRainTrough(i) {
       ctx1.beginPath();
@@ -190,7 +191,7 @@ export default {
         ctx3.lineJoin = 'miter';
         ctx3.stroke();
       }
-    };
+    }
 
     function animateRainTrough() {
       clearcanvas1();

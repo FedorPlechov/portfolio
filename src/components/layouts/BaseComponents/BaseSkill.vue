@@ -40,7 +40,7 @@ export default {
   mounted() {
     setTimeout(()=> {
       this.animation = true;
-    }, this.queue*500)
+    }, this.queue*200)
   }
 }
 </script>
@@ -84,7 +84,7 @@ $my-blue: #04c2c9;
     width: 0;
   }
   .animation-block {
-    animation: show-skill 2.5s ease-out forwards;
+    animation: show-skill 1s ease-out forwards;
   }
 }
 .percents {

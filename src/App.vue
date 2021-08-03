@@ -1,18 +1,21 @@
 <template>
   <TheHeader/>
   <TheAbout/>
+  <TheProjects/>
 
 </template>
 
 <script>
 import TheHeader from "./components/layouts/TheHeader";
-import TheAbout from './components/layouts/TheAbout'
+import TheAbout from './components/layouts/TheAbout';
+import TheProjects from "./components/layouts/TheProjects";
 
 
 export default {
   components: {
     TheHeader,
-    TheAbout
+    TheAbout,
+    TheProjects
   }
 }
 </script>
