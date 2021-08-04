@@ -108,7 +108,7 @@ export default {
         rain[i] = {
           x: Math.random() * w,
           y: Math.random() * h,
-          l: Math.random() * 1,
+          l: Math.random(),
           xs: -4 + Math.random() * 4 + 2,
           ys: Math.random() * 10 + 10
         };
