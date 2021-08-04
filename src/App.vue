@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import TheHeader from "./components/layouts/TheHeader";
-import TheAbout from './components/layouts/TheAbout';
-import TheProjects from "./components/layouts/TheProjects";
+import TheHeader from "./components/TheHeader";
+import TheAbout from './components/TheAbout';
+import TheProjects from "./components/TheProjects";
 
 
 export default {

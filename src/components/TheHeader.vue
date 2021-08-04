@@ -423,7 +423,7 @@ $color2: rgba(59,
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: url("../../assets/arrow-19-16.png");
+  background: url("../assets/arrow-19-16.png");
 }
 
 .before-enter {
@@ -483,6 +483,11 @@ $color2: rgba(59,
 .nav-menu-enter-active,
 .nav-menu-leave-active {
   transition: all .4s ease;
+}
+.navigation {
+  position: sticky;
+  top: 0;
+  z-index: 150;
 }
 
 </style>

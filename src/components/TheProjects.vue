@@ -5,21 +5,25 @@
     <div class="toggles">
       <div id="square" :style="{ width: tweenedNumber + 'px', left: tweenedLeft +'px'}" class="choose-animation"></div>
       <button :style="{color: isChoose0? 'white':'black'}" class="toggle" @click="toggleButtons1">All</button>
-      <button :style="{color: isChoose1 || color.btw1? 'white':'black'}" class="toggle" @click="toggleButtons2">My pet
-        projects
+      <button :style="{color: isChoose1 || color.btw1? 'white':'black'}" class="toggle" @click="toggleButtons2">Pet - Projects
       </button>
-      <button :style="{color: isChoose2 || color.btw2? 'white':'black'}" class="toggle" @click="toggleButtons3">Layouts
+      <button :style="{color: isChoose2 || color.btw2? 'white':'black'}" class="toggle" @click="toggleButtons3">Layout
       </button>
-      <button :style="{color: isChoose3? 'white':'black'}" class="toggle" @click="toggleButtons4">JavaScript</button>
+      <button :style="{color: isChoose3? 'white':'black'}" class="toggle" @click="toggleButtons4">Vue JS</button>
     </div>
+    <TheListOfProjects :sortData="sortData"/>
   </section>
 </template>
 
 <script>
 import gsap from 'gsap';
+import TheListOfProjects from "./layouts/TheListOfProjects";
 
 export default {
   name: "TheProjects",
+  components: {
+    TheListOfProjects
+  },
   data() {
     return {
       number: 0,
@@ -28,7 +32,8 @@ export default {
       tweenedNumber: 0,
       tweenedLeft: 0,
       buttons: [],
-      color: {btw1: false, btw2: false}
+      color: {btw1: false, btw2: false},
+      sortData: 'all'
     }
   },
   computed: {
@@ -74,6 +79,7 @@ export default {
         this.setTimOutColorBtw2(350)
         this.toggleButtons(event)} else
       this.toggleButtons(event)
+      this.sortData='vue'
     },
     toggleButtons1(event) {
       if (this.number === this.width[3]) {
@@ -84,18 +90,21 @@ export default {
         this.setTimOutColorBtw1(350)
         this.toggleButtons(event)} else
         this.toggleButtons(event)
+     this.sortData='all'
     },
     toggleButtons2(event) {
       if (this.number === this.width[3]) {
         this.setTimOutColorBtw2(250)
         this.toggleButtons(event)
       } else this.toggleButtons(event)
+      this.sortData='pet'
     },
     toggleButtons3(event) {
       if (this.number === this.width[0]) {
         this.setTimOutColorBtw1(250)
         this.toggleButtons(event)
       } else this.toggleButtons(event)
+      this.sortData='layout'
     }
 
   },

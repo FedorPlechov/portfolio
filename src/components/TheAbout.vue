@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import BaseIcons from "./BaseComponents/BaseIcons";
-import BaseSkill from "./BaseComponents/BaseSkill";
+import BaseIcons from "./layouts/BaseComponents/BaseIcons";
+import BaseSkill from "./layouts/BaseComponents/BaseSkill";
 
 export default {
   name: "TheAbout",
@@ -87,7 +87,7 @@ export default {
   &.speed {
     margin: 0 auto;
     height: 120%;
-    background: url("../../assets/icons/speed-128.png") no-repeat center/cover;
+    background: url("../assets/icons/speed-128.png") no-repeat center/cover;
     position: relative;
     top: -5px;
   }
@@ -95,7 +95,7 @@ export default {
   &.intuitive {
     margin: 0 auto;
     height: 120%;
-    background: url("../../assets/icons/light-bulb-5-128.png") no-repeat center/cover;
+    background: url("../assets/icons/light-bulb-5-128.png") no-repeat center/cover;
   }
 
   &.responsive {
@@ -103,13 +103,14 @@ export default {
     height: 120%;
     position: relative;
     top: -5px;
-    background: url("../../assets/icons/tablet-2-128.png") no-repeat center/cover;
+    background: url("../assets/icons/tablet-2-128.png") no-repeat center/cover;
   }
 
   &.dynamic {
     margin: 0 auto;
     height: 120%;
-    background: url("../../assets/icons/rocket-128.png") no-repeat center/cover;
+    background: url("../assets/icons/rocket-128.png") no-repeat center/cover;
+    transform:  rotateZ(-45deg);
   }
 
 }
@@ -119,7 +120,7 @@ export default {
   justify-content: center;
   align-items: center;
   .picture {
-    background: url(../../assets/Hzhe9SZd0zc.jpg) no-repeat center/cover;
+    background: url(../assets/Hzhe9SZd0zc.jpg) no-repeat center/cover;
     width: 100%;
     height: 540px;
   }
