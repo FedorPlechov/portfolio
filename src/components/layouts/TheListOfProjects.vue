@@ -1,25 +1,30 @@
 <template>
   <div class="list_projects">
-    <ul>
-      <li v-for="project in availableProjects" :key="project.projectName">
+    <transition-group appear name="scale" tag="ul">
+      <li v-for="project in availableProjects" :key="project.id">
         <div :style="{background: 'url('+require(`../../assets/projects/${project.fileName}`) +') top/cover'}"
              class="projects"
-             @mouseenter="toggleWindowDetails(true)" >
+             @mouseenter="toggleWindowDetails(true, project)">
         </div>
-        <div class="window_details"  v-show="isShowDetails" @mouseleave="toggleWindowDetails(false)">
-          <h3
-              class="project_title">{{ project.projectName }}
-            <p class="project_stack">{{ project.techStack }}</p>
-          </h3>
-          <button class="project_details">LEARN MORE</button>
-        </div>
+        <transition :css="false" appear @enter="enterWindow" @leave="leaveWindow" @before-enter="beforeEnterWindow" @after-leave="afterLeaveWindow">
+          <div v-if="project.details" class="window_details" @mouseleave="toggleWindowDetails(false, project)">
+            <h3
+                 class="project_title move-down">{{ project.projectName }}
+              <p class="project_stack">{{ project.techStack }}</p>
+            </h3>
+            <button  class="project_details move-up">
+              LEARN MORE
+            </button>
+          </div>
+        </transition>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
 <script>
 import projects from '../../assets/projects/projects'
+import gsap from 'gsap'
 
 export default {
   name: "TheListOfProjects",
@@ -32,7 +37,7 @@ export default {
   data() {
     return {
       projects,
-      isShowDetails: false
+      isShowDetails: false,
     }
   },
   computed: {
@@ -41,10 +46,33 @@ export default {
     }
   },
   methods: {
-    toggleWindowDetails(payload) {
-      this.isShowDetails = payload;
+    toggleWindowDetails(payload, project ) {
+      const index = this.projects.indexOf(project);
+      this.projects[index].details = payload;
+    },
+    beforeEnterWindow(el) {
+      el.style.opacity = 0
+    },
+    enterWindow(el, done) {
+      gsap.to(el, {
+        duration: 0.5,
+        opacity: 1,
+        onComplete: done
+      })
+    },
+    leaveWindow(el, done) {
+      gsap.to(el, {
+        duration: 0.5,
+        opacity: 0,
+        scale: 0,
+        onComplete: done
+      })
+    },
+    afterLeaveWindow(el) {
+      el.style.transform = 'scale(1)';
     }
-  }
+  },
+
 }
 </script>
 
@@ -98,13 +126,53 @@ div.list_projects {
     font-size: 1rem;
     padding: 5px 2rem;
     border: 1px solid $nice-color;
-    transition: all 500ms ease;
 
     &:hover {
       background-color: $nice-color;
       color: white;
       cursor: pointer;
     }
+  }
+}
+
+.move-down {
+  animation: slide-down 400ms ease;
+}
+.move-up {
+  animation: slide-up 400ms ease;
+}
+
+.scale-enter-from {
+  transform: scale(0);
+}
+
+.scale-enter-to {
+  transform: scale(1);
+}
+
+.scale-enter-active {
+  transition: all 400ms ease;
+}
+
+.scale-move {
+  transition: transform 0.4s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-60px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(60px);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 

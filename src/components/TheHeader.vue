@@ -19,9 +19,7 @@
         <div @click="toggleMenu" class="burger"></div>
       </nav>
     </div>
-    <transition name="nav-menu">
-      <TheNavMenu v-if="isShowMenu"/>
-    </transition>
+      <TheNavMenu :isShowMenu="isShowMenu"/>
   </section>
 
 
@@ -43,7 +41,7 @@ export default {
   methods: {
     toggleMenu() {
       this.isShowMenu = !this.isShowMenu;
-    }
+    },
   },
   mounted() {
     var canvas1 = document.getElementById('canvas1');
@@ -467,23 +465,6 @@ $color2: rgba(59,
   }
 }
 
-.nav-menu-enter-from,
-.nav-menu-leave-to {
-  transform: translateY(-170px);
-  opacity: 0;
-  position: relative;
-  z-index: -100;
-}
-.nav-menu-enter-to,
-.nav-menu-leave-from {
-  transform: translateY(0);
-  opacity: 1;
-  position: static;
-}
-.nav-menu-enter-active,
-.nav-menu-leave-active {
-  transition: all .4s ease;
-}
 .navigation {
   position: sticky;
   top: 0;

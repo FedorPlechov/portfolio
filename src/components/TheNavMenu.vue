@@ -1,5 +1,5 @@
 <template>
-  <div class='menu'>
+  <div v-if="isShowMenu" id="menu" :style="{height: tweenedHeight+ 'px'}" class='menu'>
     <div class="menu__items">HOME</div>
     <div class="menu__items">ABOUT</div>
     <div class="menu__items">PORTFOLIO</div>
@@ -8,8 +8,36 @@
 </template>
 
 <script>
+import gsap from 'gsap'
+
 export default {
   name: "TheNavMenu",
+  props: {
+    isShowMenu: {
+      type: Boolean,
+    }
+  },
+  data() {
+    return {
+      number: 0,
+      tweenedHeight: null,
+    }
+  },
+  watch: {
+    number(newValue) {
+      gsap.to(this.$data, {
+        duration: 0.5,
+        tweenedHeight: newValue
+      })
+    },
+    isShowMenu: function (newVal) {
+      if (newVal) {
+        this.number = 155
+        return
+      }
+      this.number = 0
+    }
+  },
 
 }
 </script>
