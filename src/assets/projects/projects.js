@@ -3,26 +3,40 @@ export default [
     {
         id: '1',
         projectName: 'Find a Coach',
-        techStack: 'Vue JS',
+        techStack: 'Vue JS/Vuex/VueRouter/FireBase',
         summary: 'My first Vue JS project',
         description: 'Something',
         fileName: 'findcoach.png',
         sort: ['all', 'vue'],
         linkToTheWebsite: '',
         linkToTheGitHub: 'https://github.com/FedorPlechov/Find-your-Coach',
-        details: false
+        details: false,
+        isOpenMoreDetails: false
     },
     {
         id: "2",
-        projectName: 'Find a Coach',
-        techStack: 'Vue JS',
-        summary: 'My first Vue JS project',
+        projectName: 'My vocabulary builder',
+        techStack: 'Vue JS/Vuex/VueRouter/FireBase',
+        summary: 'SPA for learn English',
         description: 'Something',
-        fileName: 'findcoach.png',
-        sort: ['all', 'vue'],
+        fileName: 'mvb.png',
+        sort: ['all', 'vue', 'pet'],
         linkToTheWebsite: '',
-        linkToTheGitHub: 'https://github.com/FedorPlechov/Find-your-Coach',
-        details: false
+        linkToTheGitHub: 'https://github.com/FedorPlechov/vocabulary',
+        details: false,
+        isOpenMoreDetails: false
+    },
+    {
+        id: "3",
+        projectName: 'My Portfolio',
+        techStack: 'Vue JS/Scss',
+        summary: 'It is just few information about me and my projects',
+        description: 'Something',
+        fileName: 'portfolio.png',
+        sort: ['all', 'vue', 'pet'],
+        linkToTheWebsite: '',
+        linkToTheGitHub: 'https://github.com/FedorPlechov/portfolio',
+        details: false,
+        isOpenMoreDetails: false
     }
-
 ]

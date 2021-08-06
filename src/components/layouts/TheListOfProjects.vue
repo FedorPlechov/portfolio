@@ -1,30 +1,35 @@
 <template>
   <div class="list_projects">
-    <transition-group appear name="scale" tag="ul">
+    <transition-group v-if="availableProjects.length > 0" appear name="scale" tag="ul" class="container">
       <li v-for="project in availableProjects" :key="project.id">
         <div :style="{background: 'url('+require(`../../assets/projects/${project.fileName}`) +') top/cover'}"
              class="projects"
              @mouseenter="toggleWindowDetails(true, project)">
         </div>
-        <transition :css="false" appear @enter="enterWindow" @leave="leaveWindow" @before-enter="beforeEnterWindow" @after-leave="afterLeaveWindow">
+        <transition :css="false" appear @enter="enterWindow" @leave="leaveWindow" @before-enter="beforeEnterWindow"
+                    @after-leave="afterLeaveWindow">
           <div v-if="project.details" class="window_details" @mouseleave="toggleWindowDetails(false, project)">
             <h3
-                 class="project_title move-down">{{ project.projectName }}
+                class="project_title move-down">{{ project.projectName }}
               <p class="project_stack">{{ project.techStack }}</p>
             </h3>
-            <button  class="project_details move-up">
+            <button  class="project_details move-up" @click="toggleMoreDetails(project)">
               LEARN MORE
             </button>
           </div>
         </transition>
+        <TheDetailsOfProject :project="project" v-if="project.isOpenMoreDetails"/>
       </li>
     </transition-group>
+    <TheEmptyModule v-else/>
   </div>
 </template>
 
 <script>
 import projects from '../../assets/projects/projects'
 import gsap from 'gsap'
+import TheEmptyModule from "./TheEmptyModule";
+import TheDetailsOfProject from "./TheDetailsOfProject";
 
 export default {
   name: "TheListOfProjects",
@@ -34,21 +39,28 @@ export default {
       require: true
     }
   },
+  components: {
+    TheEmptyModule,
+    TheDetailsOfProject
+  },
   data() {
     return {
       projects,
-      isShowDetails: false,
+
     }
   },
   computed: {
     availableProjects() {
       return this.projects.filter(el => el.sort.includes(this.sortData))
-    }
+    },
   },
   methods: {
     toggleWindowDetails(payload, project ) {
       const index = this.projects.indexOf(project);
       this.projects[index].details = payload;
+    },
+    toggleMoreDetails(project) {
+      project.isOpenMoreDetails = true;
     },
     beforeEnterWindow(el) {
       el.style.opacity = 0
@@ -83,6 +95,7 @@ li, ul {
   list-style: none;
   padding: 0;
   margin: 0;
+
 }
 
 li {
@@ -92,6 +105,11 @@ li {
 div.list_projects {
   padding-top: 2rem;
   width: 100%;
+
+  .container {
+    display: flex;
+    flex-flow: column;
+  }
 }
 
 .projects {
@@ -110,6 +128,10 @@ div.list_projects {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+
+  .project_title {
+    text-align: center;
+  }
 
   .project_stack {
     margin: 0;
@@ -142,20 +164,23 @@ div.list_projects {
   animation: slide-up 400ms ease;
 }
 
-.scale-enter-from {
+.scale-enter-from,
+.scale-leave-to {
   transform: scale(0);
 }
 
-.scale-enter-to {
+.scale-enter-to,
+.scale-leave-from {
   transform: scale(1);
 }
 
-.scale-enter-active {
-  transition: all 400ms ease;
+.scale-enter-active,
+.scale-leave-active {
+  transition: transform 400ms ease;
 }
 
 .scale-move {
-  transition: transform 0.4s ease-out;
+  transition: all 0.4s ease-out;
 }
 
 @keyframes slide-down {

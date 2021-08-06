@@ -13,7 +13,7 @@
       </div>
     </div>
   </header>
-  <section class="navigation">
+  <section class="navigation" :style="fixed">
     <div class="nav">
       <nav class="nav__items">
         <div @click="toggleMenu" class="burger"></div>
@@ -33,9 +33,20 @@ export default {
   components: {
     TheNavMenu
   },
+  props:['isFixed'],
   data() {
     return {
       isShowMenu: false,
+    }
+  },
+  computed: {
+    fixed() {
+      if (this.isFixed) return {
+        position: 'fixed',
+        width: "100%",
+        top: "0"
+      }
+      return null
     }
   },
   methods: {
@@ -43,7 +54,11 @@ export default {
       this.isShowMenu = !this.isShowMenu;
     },
   },
+  updated() {
+    console.log('12321123123',this.isFixed)
+  },
   mounted() {
+    console.log(this.isFixed)
     var canvas1 = document.getElementById('canvas1');
     var canvas2 = document.getElementById('canvas2');
     var canvas3 = document.getElementById('canvas3');

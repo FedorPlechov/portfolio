@@ -11,7 +11,7 @@
       </button>
       <button :style="{color: isChoose3? 'white':'black'}" class="toggle" @click="toggleButtons4">Vue JS</button>
     </div>
-    <TheListOfProjects :sortData="sortData"/>
+    <TheListOfProjects :sortData="sortData" />
   </section>
 </template>
 
@@ -24,6 +24,7 @@ export default {
   components: {
     TheListOfProjects
   },
+  emits: ['openWindow'],
   data() {
     return {
       number: 0,

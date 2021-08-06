@@ -1,5 +1,5 @@
 <template>
-  <TheHeader/>
+  <TheHeader :isFixed="isFixed"/>
   <TheAbout/>
   <TheProjects/>
 
@@ -16,6 +16,23 @@ export default {
     TheHeader,
     TheAbout,
     TheProjects
+  },
+  data() {
+    return {
+      isFixed: false
+    }
+  },
+  provide() {
+    return {
+      doToggle: this.toggleFixed,
+      isFixed: this.isFixed
+    }
+  },
+  methods: {
+    toggleFixed(payload) {
+      this.isFixed = payload
+      console.log(123)
+    }
   }
 }
 </script>
