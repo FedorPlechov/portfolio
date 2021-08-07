@@ -1,7 +1,16 @@
 <template>
-  <div class="background">
+
+  <div id="background" class="background" @click="toggleOpen">
     <div class="window">
-      <div class="pictures"></div>
+      <div class="pictures">
+        <div class="carousel" v-for="(slide, index) in project.slides" :key="index">
+          <div class="slide" :style="{}"></div>
+        </div>
+        <div class="container">
+        <div class="arrow "></div>
+        <div class="arrow right"></div>
+        </div>
+      </div>
       <div class="description">
         <h1 class="title">{{ project.projectName }}</h1>
         <p class="summary">{{ project.summary.toUpperCase() }}</p>
@@ -9,7 +18,7 @@
         <div class="container">
           <button class="view_site">VIEW SITE</button>
           <button class="view_site">GIT HUB</button>
-          <span class="cross"></span>
+          <span class="cross" v-if="false"></span>
         </div>
       </div>
     </div>
@@ -37,6 +46,14 @@ export default {
       console.log(12345);
     }
   },
+  methods: {
+    toggleOpen(event) {
+      if (event.target.id === 'background') {
+        this.$emit('close')
+        this.isOpen = !this.isOpen
+      }
+    }
+  },
   mounted() {
     this.doToggle(true)
   }
@@ -44,12 +61,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$nice-color: rgb(227, 27, 109);
+* {
+  font: normal 1rem 'Raleway',sans-serif;
+}
 .background {
   position: fixed;
   top: 51px;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -66,13 +87,59 @@ export default {
   z-index: 250;
   height: 70vh;
   top:8vh;
-  width: 90%;
+  width: 100%;
+
 
 
   .pictures {
     height: 65%;
     width: 100%;
-    background-color: #00A1A7;
+    background-color: transparent;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-bottom: 3px solid black;
+    position: relative;
+
+    .carousel {
+      background-color: transparent;
+      width: 200%;
+      height: 100%;
+      display: flex;
+      transform: translateX(0);
+      justify-content: normal;
+
+      .slide {
+        width: 100%;
+        height: 100%;
+        background-color: red;
+        overflow: hidden;
+        position: relative;
+
+      }
+
+      .slide_second {
+        background-color: black;
+
+
+      }
+
+    }
+
+    .arrow {
+      width: 60px;
+      height: 50px;
+      background: rgba(0,0,0,0.2) url('../../assets/arrow.png') no-repeat center/30%;
+      display: inline-block;
+      position: absolute;
+      bottom:0;
+
+    }
+    .right {
+      transform: rotateZ(180deg);
+      right:0;
+    }
   }
 
   .description {
@@ -84,13 +151,15 @@ export default {
 
     .title {
       margin-bottom: 0;
+      font-weight: bold;
+      font-size: 1.3rem;
     }
 
     .summary {
       margin-top: 2px;
       font-weight: bold;
       color: rgba(0, 0, 0, 0.4);
-      font-size: 1rem;
+      font-size: 0.8rem;
       width: 100%;
 
       &:after {
@@ -100,6 +169,30 @@ export default {
         border-bottom: 1px solid rgba(0, 0, 0, 0.4);
         width: 100%;
       }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 100%;
+
+  .view_site {
+    background: transparent;
+    font-weight: 200;
+    font-size: 1rem;
+    padding: 5px 2rem;
+    border: 1px solid $nice-color;
+    width: 47%;
+
+
+    &:hover {
+      background-color: $nice-color;
+      color: white;
+      cursor: pointer;
     }
   }
 }

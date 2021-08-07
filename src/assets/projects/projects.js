@@ -11,7 +11,8 @@ export default [
         linkToTheWebsite: '',
         linkToTheGitHub: 'https://github.com/FedorPlechov/Find-your-Coach',
         details: false,
-        isOpenMoreDetails: false
+        isOpenMoreDetails: false,
+        slides: ['emptymodule.png','findcoach.png']
     },
     {
         id: "2",
@@ -24,7 +25,8 @@ export default [
         linkToTheWebsite: '',
         linkToTheGitHub: 'https://github.com/FedorPlechov/vocabulary',
         details: false,
-        isOpenMoreDetails: false
+        isOpenMoreDetails: false,
+        slides: []
     },
     {
         id: "3",
@@ -37,6 +39,7 @@ export default [
         linkToTheWebsite: '',
         linkToTheGitHub: 'https://github.com/FedorPlechov/portfolio',
         details: false,
-        isOpenMoreDetails: false
+        isOpenMoreDetails: false,
+        slides: []
     }
 ]

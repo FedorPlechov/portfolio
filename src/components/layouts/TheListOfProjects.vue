@@ -18,7 +18,7 @@
             </button>
           </div>
         </transition>
-        <TheDetailsOfProject :project="project" v-if="project.isOpenMoreDetails"/>
+        <TheDetailsOfProject :project="project" v-if="project.isOpenMoreDetails" @close="project.isOpenMoreDetails=!project.isOpenMoreDetails"/>
       </li>
     </transition-group>
     <TheEmptyModule v-else/>
@@ -39,6 +39,7 @@ export default {
       require: true
     }
   },
+  emits:['close'],
   components: {
     TheEmptyModule,
     TheDetailsOfProject
@@ -90,6 +91,10 @@ export default {
 
 <style lang="scss" scoped>
 $nice-color: rgb(227, 27, 109);
+
+* {
+  font: normal 1rem 'Raleway',sans-serif;
+}
 
 li, ul {
   list-style: none;
