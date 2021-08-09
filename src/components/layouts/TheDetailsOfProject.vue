@@ -121,7 +121,7 @@ $nice-color: rgb(227, 27, 109);
   flex-flow: column;
   position: fixed;
   z-index: 250;
-  height: 70vh;
+  height: 60vh;
   top: 8vh;
   width: 90%;
 
@@ -202,6 +202,7 @@ $nice-color: rgb(227, 27, 109);
   align-items: center;
   flex-flow: row nowrap;
   width: 100%;
+  position: relative;
 
   .view_site {
     background: transparent;
