@@ -54,11 +54,7 @@ export default {
       this.isShowMenu = !this.isShowMenu;
     },
   },
-  updated() {
-    console.log('12321123123',this.isFixed)
-  },
   mounted() {
-    console.log(this.isFixed)
     var canvas1 = document.getElementById('canvas1');
     var canvas2 = document.getElementById('canvas2');
     var canvas3 = document.getElementById('canvas3');
@@ -484,6 +480,7 @@ $color2: rgba(59,
   position: sticky;
   top: 0;
   z-index: 150;
+  width: 100%;
 }
 
 </style>

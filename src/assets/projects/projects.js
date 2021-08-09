@@ -8,11 +8,11 @@ export default [
         description: 'Something',
         fileName: 'findcoach.png',
         sort: ['all', 'vue'],
-        linkToTheWebsite: '',
+        linkToTheWebsite: 'https://vue-http-demo-3a738.web.app/coaches',
         linkToTheGitHub: 'https://github.com/FedorPlechov/Find-your-Coach',
         details: false,
         isOpenMoreDetails: false,
-        slides: ['emptymodule.png','findcoach.png']
+        slides: ['emptymodule.png','findcoach.png', 'mvb.png']
     },
     {
         id: "2",

@@ -38,10 +38,14 @@ export default {
 </script>
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
+html {
+  width: 100%;
+}
 body {
   font-family: 'Raleway', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 </style>

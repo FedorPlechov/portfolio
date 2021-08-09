@@ -6,7 +6,7 @@
       </div>
       <div>
         <h3>{{ inform.title }}</h3>
-        <p>{{ inform.suggest }} <a :href="inform.linkToTheGitHub">GitHub</a></p>
+        <p>{{ inform.suggest }} <a target="_blank" :href="inform.linkToTheGitHub">GitHub</a></p>
       </div>
     </div>
   </transition>

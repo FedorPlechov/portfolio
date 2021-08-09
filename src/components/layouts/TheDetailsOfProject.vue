@@ -3,12 +3,15 @@
   <div id="background" class="background" @click="toggleOpen">
     <div class="window">
       <div class="pictures">
-        <div class="carousel" v-for="(slide, index) in project.slides" :key="index">
-          <div class="slide" :style="{}"></div>
+        <div :style="{transform: `translateX(-${currentSlideIndex*100}%)`}" class="carousel">
+          <div v-for="(slide, index) in slides" :key="index"
+               :style="{background: 'url('+require(`../../assets/projects/${slide}`) +') top/cover'}"
+               class="slide">
+          </div>
         </div>
         <div class="container">
-        <div class="arrow "></div>
-        <div class="arrow right"></div>
+          <div class="arrow" @click="prevSlide"></div>
+          <div class="arrow right" @click="nextSlide"></div>
         </div>
       </div>
       <div class="description">
@@ -16,8 +19,8 @@
         <p class="summary">{{ project.summary.toUpperCase() }}</p>
         <p class="description_project">{{ project.description }}</p>
         <div class="container">
-          <button class="view_site">VIEW SITE</button>
-          <button class="view_site">GIT HUB</button>
+          <a class="view_site" target="_blank" :href="project.linkToTheWebsite">VIEW SITE</a>
+          <a class="view_site" target="_blank" :href="project.linkToTheGitHub">GIT HUB</a>
           <span class="cross" v-if="false"></span>
         </div>
       </div>
@@ -36,7 +39,13 @@ export default {
   },
   data() {
     return {
-      isOpen: this.project.isOpenMoreDetails
+      isOpen: this.project.isOpenMoreDetails,
+      currentSlideIndex: 1,
+      slides: this.project.slides,
+      touch: {
+        startX: 0,
+        endX: 0
+      }
     }
   },
   inject: ['doToggle'],
@@ -52,10 +61,37 @@ export default {
         this.$emit('close')
         this.isOpen = !this.isOpen
       }
+    },
+    prevSlide() {
+      if (this.currentSlideIndex > 0) this.currentSlideIndex--
+      else this.currentSlideIndex = this.slides.length-1
+    },
+    nextSlide() {
+      if (this.currentSlideIndex >= this.slides.length-1) this.currentSlideIndex = 0
+      else this.currentSlideIndex++
+    },
+    touchstart(event) {
+      this.touch.startX = event.touches[0].clientX;
+      this.touch.endtX = 0
+    },
+    touchmove(event) {
+      this.touch.endX = event.touches[0].clientX;
+    },
+    touchend() {
+      if (!this.touch.endX || Math.abs(this.touch.endX - this.touch.startX) < 20) return
+      if (this.touch.endX < this.touch.startX)
+        this.prevSlide()
+      if (this.touch.endX > this.touch.startX)
+        this.nextSlide()
     }
   },
   mounted() {
     this.doToggle(true)
+
+    const el = document.querySelector(".carousel");
+    el.addEventListener('touchstart', event => this.touchstart(event));
+    el.addEventListener('touchmove', event => this.touchmove(event));
+    el.addEventListener('touchend', () => this.touchend());
   }
 }
 </script>
@@ -86,54 +122,41 @@ $nice-color: rgb(227, 27, 109);
   position: fixed;
   z-index: 250;
   height: 70vh;
-  top:8vh;
-  width: 100%;
-
+  top: 8vh;
+  width: 90%;
 
 
   .pictures {
     height: 65%;
-    width: 100%;
-    background-color: transparent;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-end;
-    align-items: flex-end;
     border-bottom: 3px solid black;
-    position: relative;
+    width: 100%;
+    overflow: hidden;
 
     .carousel {
-      background-color: transparent;
-      width: 200%;
-      height: 100%;
       display: flex;
-      transform: translateX(0);
-      justify-content: normal;
+      height: 100%;
+      transition: transform 0.5s ease;
 
       .slide {
+        flex: none;
         width: 100%;
         height: 100%;
-        background-color: red;
-        overflow: hidden;
-        position: relative;
-
       }
 
-      .slide_second {
-        background-color: black;
+      .slide:last-of-type {
 
 
       }
 
     }
-
     .arrow {
       width: 60px;
       height: 50px;
-      background: rgba(0,0,0,0.2) url('../../assets/arrow.png') no-repeat center/30%;
+      background: rgba(0, 0, 0, 0.2) url('../../assets/arrow.png') no-repeat center/30%;
       display: inline-block;
       position: absolute;
-      bottom:0;
+      bottom: 35%;
+      cursor: pointer;
 
     }
     .right {
@@ -186,7 +209,9 @@ $nice-color: rgb(227, 27, 109);
     font-size: 1rem;
     padding: 5px 2rem;
     border: 1px solid $nice-color;
-    width: 47%;
+    text-decoration: none;
+    color: inherit;
+
 
 
     &:hover {
