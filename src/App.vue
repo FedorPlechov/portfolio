@@ -2,6 +2,8 @@
   <TheHeader :isFixed="isFixed"/>
   <TheAbout/>
   <TheProjects/>
+  <TheContact/>
+  <TheFooter/>
 
 </template>
 
@@ -9,13 +11,17 @@
 import TheHeader from "./components/TheHeader";
 import TheAbout from './components/TheAbout';
 import TheProjects from "./components/TheProjects";
+import TheContact from "./components/TheContact";
+import TheFooter from "./components/TheFooter";
 
 
 export default {
   components: {
     TheHeader,
     TheAbout,
-    TheProjects
+    TheProjects,
+    TheContact,
+    TheFooter
   },
   data() {
     return {
@@ -31,7 +37,6 @@ export default {
   methods: {
     toggleFixed(payload) {
       this.isFixed = payload
-      console.log(123)
     }
   }
 }

@@ -49,6 +49,8 @@ $my-blue: #04c2c9;
 
 .menu {
   background-color: #333333;
+  position: absolute;
+  width: 100%;
 
   .menu__items {
     color: $main-color;
