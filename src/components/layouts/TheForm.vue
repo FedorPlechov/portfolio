@@ -121,7 +121,6 @@ export default {
 
   .submit {
     align-self: flex-end;
-    margin: 0.5rem;
     color: #FFFFFF;
     border: 1px solid #FFFFFF;
     background-color: rgb(37, 41, 52);

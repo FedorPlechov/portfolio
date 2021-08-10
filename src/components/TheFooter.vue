@@ -13,7 +13,7 @@
     </div>
     <h6>PLECHOV FEDOR <span>©2021</span></h6>
     <div class="wrapper">
-      <div class="arrow_to_up"></div>
+      <a href="#home"><div class="arrow_to_up"></div></a>
     </div>
   </div>
 </template>

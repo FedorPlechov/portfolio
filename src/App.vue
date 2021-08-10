@@ -45,6 +45,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
 html {
   width: 100%;
+  scroll-behavior: smooth;
 }
 body {
   font-family: 'Raleway', sans-serif;

@@ -1,9 +1,9 @@
 <template>
-  <div v-if="isShowMenu" id="menu" :style="{height: tweenedHeight+ 'px'}" class='menu'>
-    <div class="menu__items">HOME</div>
-    <div class="menu__items">ABOUT</div>
-    <div class="menu__items">PORTFOLIO</div>
-    <div class="menu__items">CONTACT</div>
+  <div v-if="isShowMenu" id="menu" :style="{height: tweenedHeight+ 'px'}" class='menu' @click="$emit('close')">
+    <a href="#home" class="menu__items" >HOME</a>
+    <a href="#about" class="menu__items">ABOUT</a>
+    <a href="#projects" class="menu__items">PORTFOLIO</a>
+    <a href="#contact" class="menu__items">CONTACT</a>
   </div>
 </template>
 
@@ -32,13 +32,12 @@ export default {
     },
     isShowMenu: function (newVal) {
       if (newVal) {
-        this.number = 155
+        this.number = 170
         return
       }
       this.number = 0
     }
   },
-
 }
 </script>
 
@@ -51,11 +50,14 @@ $my-blue: #04c2c9;
   background-color: #333333;
   position: absolute;
   width: 100%;
+  height: 100%;
 
   .menu__items {
     color: $main-color;
     padding-left: 1rem;
     padding-bottom: 1rem;
+    display: block;
+    font-size: 1.2rem;
 
     &:first-of-type {
       padding-top: 1rem;
@@ -66,5 +68,8 @@ $my-blue: #04c2c9;
       cursor: pointer;
     }
   }
+}
+a {
+  text-decoration: none;
 }
 </style>

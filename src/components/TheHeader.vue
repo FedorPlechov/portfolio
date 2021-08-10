@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header id="home">
     <div class="header thunder container">
       <canvas id="canvas1"></canvas>
       <canvas id="canvas2"></canvas>
@@ -7,9 +7,9 @@
       <div class="title">
         <p> Hello, I'm <span class="name">Fedor Plechov</span>.</p>
         <p>I'm a frontend web developer.</p>
-        <button class="linkToProject">View my work
+        <a href="#projects" class="linkToProject">View my work
           <div class="arrow-icon"></div>
-        </button>
+        </a>
       </div>
     </div>
   </header>
@@ -19,7 +19,7 @@
         <div @click="toggleMenu" class="burger"></div>
       </nav>
     </div>
-      <TheNavMenu :isShowMenu="isShowMenu"/>
+      <TheNavMenu :isShowMenu="isShowMenu" @close="toggleMenu"/>
   </section>
 
 
@@ -401,7 +401,7 @@ $color2: rgba(59,
     }
   }
 
-  button {
+  a {
     font-family: 'Raleway', sans-serif;
     font-size: 1.2rem;
     margin-top: 1rem;
@@ -411,14 +411,16 @@ $color2: rgba(59,
     background: none;
     border: 1px solid rgba(255, 255, 255);;
     color: rgba(255, 255, 255);
-    padding: 0.5rem;
+    padding: 1.2rem 0 0.5rem 1.2rem;
     transition: all 1000ms ease;
+    text-decoration: none;
   }
 
-  button:hover {
+  a:hover,:active {
     background: $my-blue;
     border: $my-blue;
     cursor: pointer;
+    border:1px solid $my-blue;
 
     .arrow-icon {
       transform: rotateZ(90deg);
