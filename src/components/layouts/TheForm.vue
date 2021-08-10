@@ -40,8 +40,10 @@ export default {
   methods: {
     validationField(arr) {
       arr.forEach(el => {
-        if (el.value === '') el.error = 'This field is require'
-        this.isValidating = false;
+        if (el.value === '') {
+          el.error = 'This field is require'
+          this.isValidating = false;
+        }
       })
     },
     validationEmail(payload) {
@@ -57,11 +59,12 @@ export default {
       payload.error = false;
     },
     async fetchData(){
+      const data = `Name: ${this.name.value} \n email: ${this.email.value} \n message: ${this.message.value}`;
       const token = "1915812966:AAFovpLW4e72aBlnfFuhfSKgUYxejc9mp5o";
-      const chat_id = '735604317'
+      const chat_id = '735604317';
       const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
-        body: JSON.stringify({'chat_id': chat_id, 'text': "hello"}),
+        body: JSON.stringify({'chat_id': chat_id, 'text': data}),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -75,7 +78,6 @@ export default {
       this.validationEmail(this.email)
 
       if (this.isValidating) {
-        // const data = 'Name: '+ this.name.value + '/n' + 'email: '+ this.email.value + '/n' + 'message: ' + this.message.value
         this.fetchData()
       }
     }
