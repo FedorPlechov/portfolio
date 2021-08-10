@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <form class="form" @submit.prevent="submit">
+    <form class="form" @submit.prevent="submit" :class="{error_form: !isConnection}">
       <input v-model.trim="name.value" name="Name" placeholder="Name" type="text" :class="{error:name.error}" @focus="clearError(name)"/>
       <span v-if="name.error">{{ name.error }}</span>
       <input v-model.trim="email.value" name="email" placeholder="Enter email" type="email" :class="{error:email.error}" @focus="clearError(email)"/>
@@ -29,7 +29,8 @@ export default {
         value: '',
         error: false
       },
-      isValidating: true
+      isValidating: true,
+      isConnection: true,
     }
   },
   computed: {
@@ -38,7 +39,7 @@ export default {
     }
   },
   methods: {
-    validationField(arr) {
+    validationFields(arr) {
       arr.forEach(el => {
         if (el.value === '') {
           el.error = 'This field is require'
@@ -58,6 +59,7 @@ export default {
     clearError(payload) {
       payload.error = false;
     },
+
     async fetchData(){
       const data = `Name: ${this.name.value} \n email: ${this.email.value} \n message: ${this.message.value}`;
       const token = "1915812966:AAFovpLW4e72aBlnfFuhfSKgUYxejc9mp5o";
@@ -69,16 +71,21 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-      return console.log(response.json());
+      return (response.json());
     },
     submit() {
       this.clearErrors(this.arrayOfObjects)
       this.isValidating = true;
-      this.validationField(this.arrayOfObjects)
+      this.isConnection = true;
+      this.validationFields(this.arrayOfObjects)
       this.validationEmail(this.email)
 
       if (this.isValidating) {
-        this.fetchData()
+        try{
+          this.fetchData()
+        }catch (err) {
+          this.isConnection = false;
+        }
       }
     }
   }
@@ -100,6 +107,7 @@ export default {
   flex-flow: column nowrap;
   width: 90%;
   padding-bottom: 70px;
+  transition: all 0.5s ease;
 
   input, textarea {
     font-size: 1.2rem;
@@ -136,6 +144,19 @@ span {
 .error {
   &:placeholder-shown {
     border: 1px solid red;
+  }
+}
+.error_form {
+  border: 2px solid red;
+  &:after{
+    content: 'Connection is failed';
+    display: inline-block;
+    position: relative;
+    bottom:15px;
+    text-align: center;
+    color: red;
+    animation: move-right 0.5s ease;
+
   }
 }
 @keyframes move-right {
