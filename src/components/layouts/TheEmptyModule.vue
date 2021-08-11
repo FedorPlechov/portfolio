@@ -33,6 +33,8 @@ $nice-color: rgb(227, 27, 109);
 .empty_project {
   height: 240px;
   width: 100%;
+  max-width: 500px;
+  margin: auto auto;
 }
 
 h3 {

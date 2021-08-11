@@ -169,6 +169,9 @@ $nice-color: rgb(227, 27, 109);
   justify-content: space-between;
   position: relative;
   z-index: 1;
+  @media (min-width:700px) {
+    width: 600px;
+  }
 
   .toggle {
     border: none;
@@ -195,5 +198,6 @@ $nice-color: rgb(227, 27, 109);
   top: -5px;
   z-index: -1;
 }
+
 
 </style>

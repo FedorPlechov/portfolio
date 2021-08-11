@@ -1,5 +1,7 @@
-import { createApp } from "vue";
+import {createApp} from "vue";
 import App from "./App.vue";
 import ScrollAnimation from './directives/skrollanimation'
 
-createApp(App).directive('scrollanimation', ScrollAnimation).mount("#app");
+const app = createApp(App)
+app.directive('scrollanimation', ScrollAnimation)
+app.mount("#app");

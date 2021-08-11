@@ -60,11 +60,11 @@ export default {
     color: #FFFFFF;
     font-size: 1.8rem;
     margin-bottom: 1rem;
+
   }
   .question {
     text-align: center;
     color: rgb(4, 194, 201)
   }
-
 }
 </style>

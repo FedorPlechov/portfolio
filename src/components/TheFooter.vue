@@ -13,7 +13,7 @@
     </div>
     <h6>PLECHOV FEDOR <span>©2021</span></h6>
     <div class="wrapper">
-      <a href="#home"><div class="arrow_to_up"></div></a>
+      <a href="#home"><div class="arrow_to_up" v-scrollanimation></div></a>
     </div>
   </div>
 </template>
@@ -77,8 +77,20 @@ span {
       height: 80%;
       display: block;
       background: url("../assets/white-arrow-png-41954.png") no-repeat center/cover;
-      transform: rotateZ(-90deg) translateX(-3px);
+      transform: rotateZ(-90deg) translateX(-3px) translateY(1px);
     }
   }
+}
+.before-enter {
+  @media(min-width: 700px) {
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 2s ease;
+  }
+}
+.enter {@media(min-width: 700px) {
+  opacity: 1;
+  transform: translateY(0);
+}
 }
 </style>

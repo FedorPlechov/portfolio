@@ -78,7 +78,7 @@ export default {
       this.isValidating = true;
       this.isConnection = true;
       this.validationFields(this.arrayOfObjects)
-      this.validationEmail(this.email)
+      if (!this.email.error) this.validationEmail(this.email)
 
       if (this.isValidating) {
         try{
@@ -108,6 +108,7 @@ export default {
   width: 90%;
   padding-bottom: 70px;
   transition: all 0.5s ease;
+  max-width: 700px;
 
   input, textarea {
     font-size: 1.2rem;

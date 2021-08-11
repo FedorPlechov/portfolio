@@ -24,6 +24,9 @@
           <span class="cross" v-if="false"></span>
         </div>
       </div>
+      <div class="wrapper" @click="close">
+      <div class="cross"></div>
+      </div>
     </div>
   </div>
 
@@ -52,15 +55,17 @@ export default {
   watch: {
     isOpen(newValue) {
       this.doToggle(newValue);
-      console.log(12345);
     }
   },
   methods: {
     toggleOpen(event) {
       if (event.target.id === 'background') {
-        this.$emit('close')
-        this.isOpen = !this.isOpen
+        this.close()
       }
+    },
+    close() {
+      this.$emit('close')
+      this.isOpen = !this.isOpen
     },
     prevSlide() {
       if (this.currentSlideIndex > 0) this.currentSlideIndex--
@@ -111,6 +116,7 @@ $nice-color: rgb(227, 27, 109);
   display: flex;
   justify-content: center;
   align-items: center;
+  left: 0;
 
 }
 
@@ -121,7 +127,7 @@ $nice-color: rgb(227, 27, 109);
   flex-flow: column;
   position: fixed;
   z-index: 250;
-  height: 60vh;
+  height: 80vh;
   top: 8vh;
   width: 90%;
 
@@ -222,5 +228,17 @@ $nice-color: rgb(227, 27, 109);
     }
   }
 }
-
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: -6rem;
+}
+.cross {
+  height: 5rem;
+  width: 5rem;
+  background:  url(../../assets/icons/close-icon-13612.png) center/cover;
+}
 </style>

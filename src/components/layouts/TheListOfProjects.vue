@@ -2,7 +2,7 @@
   <div class="list_projects">
     <transition-group v-if="availableProjects.length > 0" appear name="scale" tag="ul" class="container">
       <li v-for="project in availableProjects" :key="project.id">
-        <div :style="{background: 'url('+require(`../../assets/projects/${project.fileName}`) +') top/cover'}"
+        <div :style="{background: 'url(' + require(`../../assets/projects/${project.fileName}`) + `) ${project.imgPosition}/cover `}"
              class="projects"
              @mouseenter="toggleWindowDetails(true, project)">
         </div>
@@ -100,11 +100,19 @@ li, ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-width: 400px;
 
+}
+ul {
+  margin: 0 auto;
 }
 
 li {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 div.list_projects {
@@ -114,12 +122,25 @@ div.list_projects {
   .container {
     display: flex;
     flex-flow: column;
+    @media (min-width:700px) {
+      display: flex;
+      flex-flow: wrap row;
+      justify-content: center;
+      max-width: 600px;
+    }
+    @media (min-width:900px) {
+      max-width: 900px;
+    }
   }
 }
 
 .projects {
   width: 100%;
   height: 240px;
+  max-width: 700px;
+  @media (min-width:700px) {
+   width: 300px;
+  }
 }
 
 .window_details {
