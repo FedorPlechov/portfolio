@@ -19,7 +19,7 @@
     <div class="info">
       <div class="avatar">
         <div class="picture"></div>
-          <h3>Who this guy?</h3>
+          <h3>Who's this guy?</h3>
           <p class="answer">I'm a Front-End Developer. I have serious passion for UI effects, animations and creating
             intuitive, dynamic user experiences.
             Let's make something special.</p>
