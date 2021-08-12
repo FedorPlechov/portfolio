@@ -1,5 +1,5 @@
 <template>
-  <section class="about" id="about">
+  <section class="about" id="about" v-scrollnav data-nav="navAbout">
     <h1 v-scrollanimation class="title">ABOUT</h1>
     <div v-scrollanimation class="line"></div>
     <div class="icons_skills">

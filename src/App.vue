@@ -53,5 +53,6 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  overflow-x:hidden;
 }
 </style>

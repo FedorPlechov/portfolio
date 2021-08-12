@@ -1,5 +1,5 @@
 <template>
-  <header id="home">
+  <header id="home" v-scrollnav data-nav="navHome">
     <div class="header thunder container">
       <canvas id="canvas1"></canvas>
       <canvas id="canvas2"></canvas>
@@ -466,6 +466,9 @@ $color2: rgba(59,
   border: 4px solid $main-color;
   border-left: none;
   border-right: none;
+  @media (min-width:700px) {
+    display: none;
+  }
 
   &:before {
     content: '';

@@ -1,5 +1,5 @@
 <template>
-  <section id="projects" class="my-projects">
+  <section id="projects" class="my-projects" v-scrollnav data-nav="navPortfolio">
     <h1 class="title">PROJECTS</h1>
     <div class="line"></div>
     <div class="toggles">
@@ -182,6 +182,9 @@ $nice-color: rgb(227, 27, 109);
     &:first-of-type {
       padding-left: 1.2rem ;
       padding-right: 1.2rem;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 

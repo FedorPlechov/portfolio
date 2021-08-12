@@ -1,5 +1,5 @@
 <template>
-  <section class="contact_section" id="contact">
+  <section class="contact_section" id="contact" v-scrollnav data-nav="navContact">
     <div class="contact">
     <div class="triangle-down"></div>
     <h1 class="title">CONTACT</h1>
