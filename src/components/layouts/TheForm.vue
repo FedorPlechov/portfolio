@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <form class="form" @submit.prevent="submit" :class="{error_form: !isConnection}">
+    <form v-scrollanimation class="form" @submit.prevent="submit" :class="{error_form: !isConnection}">
       <input v-model.trim="name.value" name="Name" placeholder="Name" type="text" :class="{error:name.error}" @focus="clearError(name)"/>
       <span v-if="name.error">{{ name.error }}</span>
       <input v-model.trim="email.value" name="email" placeholder="Enter email" type="email" :class="{error:email.error}" @focus="clearError(email)"/>
@@ -109,6 +109,19 @@ export default {
   padding-bottom: 70px;
   transition: all 0.5s ease;
   max-width: 700px;
+
+  &.before-enter {
+    @media(min-width: 700px) {
+      transform: scale(0);
+      transition:transform 800ms ease;
+    }
+  }
+
+  &.enter {
+    @media(min-width: 700px) {
+      transform: scale(1);
+    }
+  }
 
   input, textarea {
     font-size: 1.2rem;

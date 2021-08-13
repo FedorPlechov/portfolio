@@ -24,7 +24,10 @@ const animatedScrollObserver = new IntersectionObserver(
 
             }
         });
-    }
+    },{
+    root: null,
+        rootMargin: '0px 0px -25% 0px',
+        threshold: 0.5}
 );
 
 /*

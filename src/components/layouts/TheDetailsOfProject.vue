@@ -21,7 +21,6 @@
         <div class="container">
           <a class="view_site" target="_blank" :href="project.linkToTheWebsite">VIEW SITE</a>
           <a class="view_site" target="_blank" :href="project.linkToTheGitHub">GIT HUB</a>
-          <span class="cross" v-if="false"></span>
         </div>
       </div>
       <div class="wrapper" @click="close">
@@ -240,5 +239,6 @@ $nice-color: rgb(227, 27, 109);
   height: 5rem;
   width: 5rem;
   background:  url(../../assets/icons/close-icon-13612.png) center/cover;
+  cursor: pointer;
 }
 </style>

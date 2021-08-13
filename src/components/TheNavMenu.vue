@@ -61,6 +61,7 @@ $my-blue: #04c2c9;
     background: transparent;
     max-width: 1200px;
     margin-left: 20%;
+    width: 50%;
   }
 
   .menu__items {

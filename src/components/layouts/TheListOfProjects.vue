@@ -1,6 +1,6 @@
 <template>
   <div class="list_projects">
-    <transition-group v-if="availableProjects.length > 0" appear name="scale" tag="ul" class="container">
+    <transition-group v-if="availableProjects.length > 0 " appear name="scale" tag="ul" class="container" v-scrollanimation>
       <li v-for="project in availableProjects" :key="project.id">
         <div :style="{background: 'url(' + require(`../../assets/projects/${project.fileName}`) + `) ${project.imgPosition}/cover `}"
              class="projects"
@@ -18,7 +18,9 @@
             </button>
           </div>
         </transition>
+        <teleport to="body">
         <TheDetailsOfProject :project="project" v-if="project.isOpenMoreDetails" @close="project.isOpenMoreDetails=!project.isOpenMoreDetails"/>
+        </teleport>
       </li>
     </transition-group>
     <TheEmptyModule v-else/>
@@ -105,6 +107,17 @@ li, ul {
 }
 ul {
   margin: 0 auto;
+  @media (min-width:700px) {
+    &.before-enter {
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity,transform 500ms ease;
+    }
+    &.enter {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
 li {

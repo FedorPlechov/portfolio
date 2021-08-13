@@ -34,8 +34,13 @@
           <base-skill :queue=2 :skill="{name:'HTML', rating:'90'}"></base-skill>
           <base-skill :queue=3 :skill="{name:'JavaScript', rating:'70'}"></base-skill>
           <base-skill :queue=4 :skill="{name:'Vue', rating:'70'}"></base-skill>
-          <base-skill :queue=5 :skill="{name:'UI', rating:'60'}"></base-skill>
-        </div>
+          <base-skill :queue=6 :skill="{name:'UI', rating:'60'}"></base-skill>
+          <base-skill :queue=7 :skill="{name:'Ux', rating:'60'}"></base-skill>
+          <base-skill :queue=8 :skill="{name:'SCSS', rating:'70'}"></base-skill>
+          <base-skill :queue=9 :skill="{name:'Webpack', rating:'50'}"></base-skill>
+          <base-skill :queue=10 :skill="{name:'Gsap', rating:'55'}"></base-skill>
+          <base-skill :queue=11 :skill="{name:'Reliable', rating:'100'}"></base-skill>
+            </div>
       </div>
     </div>
   </section>
@@ -217,6 +222,7 @@ export default {
     @media (min-width: 700px) {
       width: 90%;
       padding-top: 0;
+      margin-top: -0.2rem;
     }
 
     &.before-enter {
@@ -239,6 +245,13 @@ export default {
   .info {
     @media (min-width: 700px) {
       display: flex;
+    }
+  }
+  h3,
+  .answer{
+    @media (min-width:700px) {
+      position: relative;
+      left: 65%;
     }
   }
 

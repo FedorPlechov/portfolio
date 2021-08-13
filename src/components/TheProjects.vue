@@ -1,8 +1,8 @@
 <template>
   <section id="projects" class="my-projects" v-scrollnav data-nav="navPortfolio">
-    <h1 class="title">PROJECTS</h1>
-    <div class="line"></div>
-    <div class="toggles">
+    <h1 class="title" v-scrollanimation>PROJECTS</h1>
+    <div class="line" v-scrollanimation></div>
+    <div class="toggles" v-scrollanimation>
       <div id="square" :style="{ width: tweenedNumber + 'px', left: tweenedLeft +'px'}" class="choose-animation"></div>
       <button :style="{color: isChoose0? 'white':'black'}" class="toggle" @click="toggleButtons1">All</button>
       <button :style="{color: isChoose1 || color.btw1? 'white':'black'}" class="toggle" @click="toggleButtons2">Pet - Projects
@@ -154,12 +154,40 @@ $nice-color: rgb(227, 27, 109);
     width: 4rem;
     background-color: #444649;
     margin-bottom: 75px;
+
+    &.before-enter {
+      @media(min-width: 700px) {
+        opacity: 0;
+
+      }
+    }
+
+    &.enter {
+      @media(min-width: 700px) {
+        animation: slide-left 800ms ease forwards;
+        animation-delay: 500ms;
+      }
+    }
+
   }
 
   .title {
     color: #444649;
     font-size: 1.8rem;
     margin-bottom: 1rem;
+
+    &.before-enter {
+      @media(min-width: 700px) {
+        opacity: 0;
+
+      }
+    }
+
+    &.enter {
+      @media(min-width: 700px) {
+        animation: slide-left 800ms ease forwards;
+      }
+    }
   }
 
 }
@@ -171,6 +199,13 @@ $nice-color: rgb(227, 27, 109);
   z-index: 1;
   @media (min-width:700px) {
     width: 600px;
+    &.before-enter {
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+    &.enter {
+      opacity: 1;
+    }
   }
 
   .toggle {
@@ -202,5 +237,15 @@ $nice-color: rgb(227, 27, 109);
   z-index: -1;
 }
 
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 </style>

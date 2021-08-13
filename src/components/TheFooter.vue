@@ -1,19 +1,27 @@
 <template>
   <div class="footer">
     <div class="social-icons">
-      <a href="#">
-        <div class="icon vk_icon"></div>
+      <a href="https://vk.com/bleed151" target="_blank">
+        <div class="icon">
+          <div class="vk_icon i_icon"></div>
+        </div>
       </a>
-      <a href="#">
-        <div class="icon git_hub_icon"></div>
+      <a href="https://t.me/elusiveer" target="_blank">
+        <div class="icon">
+          <div class="telegram_icon i_icon"></div>
+        </div>
       </a>
-      <a href="#">
-        <div class="icon telegram_icon"></div>
+      <a href="https://github.com/FedorPlechov" target="_blank">
+        <div class="icon">
+          <div class=" git_hub_icon vk_icon i_icon"></div>
+        </div>
       </a>
     </div>
     <h6>PLECHOV FEDOR <span>©2021</span></h6>
     <div class="wrapper">
-      <a href="#home"><div class="arrow_to_up" v-scrollanimation></div></a>
+      <a href="#home">
+        <div class="arrow_to_up"></div>
+      </a>
     </div>
   </div>
 </template>
@@ -39,9 +47,32 @@ export default {
 }
 
 .icon {
-  height: 55px;
-  width: 55px;
-  background: rgb(38, 47, 56)
+  height: 48px;
+  width: 48px;
+  overflow: hidden;
+  border-radius: 10px;
+
+
+  .i_icon {
+
+    height: 200%;
+    width: 48px;
+    background: url('../assets/icons/vk-48.png') 50% 0;
+    position: relative;
+    top: -100%;
+    transition: all 400ms ease;
+
+    &.telegram_icon {
+      background: url('../assets/icons/telegram.png') 50% 0;
+    }
+    &.git_hub_icon {
+      background: url('../assets/icons/github-8-48.png') 50% 0;
+
+    }
+    &:hover,:active {
+      transform: translateY(48px);
+    }
+  }
 }
 
 a {
@@ -80,17 +111,5 @@ span {
       transform: rotateZ(-90deg) translateX(-3px) translateY(1px);
     }
   }
-}
-.before-enter {
-  @media(min-width: 700px) {
-  transform: translateY(50px);
-  opacity: 0;
-  transition: all 2s ease;
-  }
-}
-.enter {@media(min-width: 700px) {
-  opacity: 1;
-  transform: translateY(0);
-}
 }
 </style>

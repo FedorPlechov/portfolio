@@ -2,8 +2,8 @@
   <div class="skill_box">
     <div class="name_skill">{{ skill.name }}</div>
     <div class="line_rating">
-      <div :style="{ width: skill.rating + '%'}" class="rating"><div class="block" :class="{'animation-block':animation}"></div></div>
-      <div v-if="!forMobile" class="percents">{{ skill.rating }}%</div>
+      <div :style="{ width: skill.rating + '%'}" class="rating"><div class="block" :style="{animationDelay: queue*300+ 'ms'}" v-scrollanimation></div></div>
+      <div v-if="!forMobile" class="percents" :style="oneHundred">{{ skill.rating }}%</div>
     </div>
   </div>
 </template>
@@ -32,16 +32,25 @@ export default {
       animation: false
     }
   },
+  computed:{
+    oneHundred(){
+      if (this.skill.rating==100) {
+        return {backgroundColor: '#00A1A7', color: '#FFFFFF' }
+      }
+      return 'none'
+
+    }
+  },
   created() {
-    if (window.innerWidth < 645) {
+    if (window.innerWidth < 700) {
       this.forMobile = true;
     }
   },
-  mounted() {
-    setTimeout(()=> {
-      this.animation = true;
-    }, this.queue*200)
-  }
+  // mounted() {
+  //   setTimeout(()=> {
+  //     this.animation = true;
+  //   }, this.queue*200)
+  // }
 }
 </script>
 
@@ -82,15 +91,19 @@ $my-blue: #04c2c9;
     background-color: #00A1A7;
     height: 100%;
     width: 0;
+
+    &.enter {
+      animation: show-skill 1.2s ease-out forwards;
+    }
   }
-  .animation-block {
-    animation: show-skill 1s ease-out forwards;
-  }
+
 }
 .percents {
   padding:0 15px ;
   font-size: 0.8rem;
-  color:#666666
+  color:#666666;
+  width: 1rem;
+  flex:none;
 }
 @keyframes show-skill {
   from {
