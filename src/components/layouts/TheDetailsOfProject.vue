@@ -10,8 +10,8 @@
           </div>
         </div>
         <div class="container">
-          <div class="arrow" @click="prevSlide"></div>
-          <div class="arrow right" @click="nextSlide"></div>
+          <div v-if="isOneSlide" class="arrow" @click="prevSlide"></div>
+          <div v-if="isOneSlide" class="arrow right" @click="nextSlide"></div>
         </div>
       </div>
       <div class="description">
@@ -19,8 +19,8 @@
         <p class="summary">{{ project.summary.toUpperCase() }}</p>
         <p class="description_project">{{ project.description }}</p>
         <div class="container">
-          <a class="view_site" target="_blank" :href="project.linkToTheWebsite">VIEW SITE</a>
-          <a class="view_site" target="_blank" :href="project.linkToTheGitHub">GIT HUB</a>
+          <a v-if="project.linkToTheWebsite" class="view_site" target="_blank" :href="project.linkToTheWebsite">VIEW SITE</a>
+          <a v-if="project.linkToTheGitHub" class="view_site" target="_blank" :href="project.linkToTheGitHub">GIT HUB</a>
         </div>
       </div>
       <div class="wrapper" @click="close">
@@ -56,6 +56,11 @@ export default {
       this.doToggle(newValue);
     }
   },
+  computed: {
+    isOneSlide(){
+      return this.project.slides.length > 1;
+    }
+  },
   methods: {
     toggleOpen(event) {
       if (event.target.id === 'background') {
@@ -89,14 +94,17 @@ export default {
         this.nextSlide()
     }
   },
+  beforeMount() {
+    if (this.project.slides.length===1) this.currentSlideIndex=0
+    },
   mounted() {
     this.doToggle(true)
-
+    if (!this.isOneSlide) {
     const el = document.querySelector(".carousel");
     el.addEventListener('touchstart', event => this.touchstart(event));
     el.addEventListener('touchmove', event => this.touchmove(event));
     el.addEventListener('touchend', () => this.touchend());
-  }
+  }}
 }
 </script>
 

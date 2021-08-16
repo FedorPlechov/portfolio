@@ -5,7 +5,7 @@
     <div class="toggles" v-scrollanimation>
       <div id="square" :style="{ width: tweenedNumber + 'px', left: tweenedLeft +'px'}" class="choose-animation"></div>
       <button :style="{color: isChoose0? 'white':'black'}" class="toggle" @click="toggleButtons1">All</button>
-      <button :style="{color: isChoose1 || color.btw1? 'white':'black'}" class="toggle" @click="toggleButtons2">Pet - Projects
+      <button :style="{color: isChoose1 || color.btw1? 'white':'black'}" class="toggle" @click="toggleButtons2">Study-Projects
       </button>
       <button :style="{color: isChoose2 || color.btw2? 'white':'black'}" class="toggle" @click="toggleButtons3">Layout
       </button>
@@ -98,7 +98,7 @@ export default {
         this.setTimOutColorBtw2(250)
         this.toggleButtons(event)
       } else this.toggleButtons(event)
-      this.sortData='pet'
+      this.sortData='study'
     },
     toggleButtons3(event) {
       if (this.number === this.width[0]) {
