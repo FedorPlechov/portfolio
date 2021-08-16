@@ -2,10 +2,10 @@
   <div class="list_projects">
     <transition-group v-if="availableProjects.length > 0 " appear name="scale" tag="ul" class="container" v-scrollanimation>
       <li v-for="project in availableProjects" :key="project.id">
-        <div id="block"
+        <div
              :style="{background: 'url(' + require(`../../assets/projects/${project.fileName}`) + `) ${project.imgPosition}/cover `}"
              class="projects"
-             @mouseenter="toggleWindowDetails(true, project)">
+             @mouseenter="toggleWindowDetails(true, project)" @click="toggleWindowDetails(true, project)">
 
         </div>
         <transition :css="false" appear @enter="enterWindow" @leave="leaveWindow" @before-enter="beforeEnterWindow"
@@ -90,10 +90,11 @@ export default {
     }
   },
   mounted() {
-    const block = document.getElementById('block')
-    block.addEventListener('touchend', () => {
-      this.toggleWindowDetails(true, this.project)
-    })
+   const blocks = document.getElementsByClassName('li>div:first-of-type')
+    blocks.forEach(el => el.addEventListener('touchend', (event)=>{
+      event.target.dispatchEvent('mouseenter')
+      console.log(123)
+    }))
   }
 }
 </script>
