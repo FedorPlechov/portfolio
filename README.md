@@ -1,5 +1,7 @@
 # my-portfolio
 
+## It's simple website about me and my projects.If you want to acquaint to me, welcome to <a href='http://findmatthew.com/'>there</a>
+
 ## Project setup
 ```
 npm install
