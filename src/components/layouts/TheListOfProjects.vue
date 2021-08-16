@@ -4,7 +4,8 @@
       <li v-for="project in availableProjects" :key="project.id">
         <div :style="{background: 'url(' + require(`../../assets/projects/${project.fileName}`) + `) ${project.imgPosition}/cover `}"
              class="projects"
-             @mouseenter="toggleWindowDetails(true, project)">
+             @mouseenter="toggleWindowDetails(true, project)"
+              @click="toggleWindowDetails(true, project)">
         </div>
         <transition :css="false" appear @enter="enterWindow" @leave="leaveWindow" @before-enter="beforeEnterWindow"
                     @after-leave="afterLeaveWindow">
