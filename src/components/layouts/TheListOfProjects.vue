@@ -89,13 +89,13 @@ export default {
       el.style.transform = 'scale(1)';
     }
   },
-  mounted() {
-   const blocks = document.getElementsByClassName('li>div:first-of-type')
-    blocks.forEach(el => el.addEventListener('touchend', (event)=>{
-      event.target.dispatchEvent('mouseenter')
-      console.log(123)
-    }))
-  }
+  // mounted() {
+  //  const blocks = document.getElementsByClassName('li>div:first-of-type')
+  //   blocks.forEach(el => el.addEventListener('touchend', (event)=>{
+  //     event.target.dispatchEvent('mouseenter')
+  //
+  //   }))
+  // }
 }
 </script>
 
