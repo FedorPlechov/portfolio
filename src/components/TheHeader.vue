@@ -482,7 +482,7 @@ $color2: rgba(59,
 }
 
 .navigation {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 150;
   width: 100%;

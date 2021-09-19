@@ -44,7 +44,7 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
 html {
-  width: 100%;
+  width: 100vw;
   scroll-behavior: smooth;
   overflow-x:hidden;
 }
