@@ -86,8 +86,25 @@ export default {
     },
     afterLeaveWindow(el) {
       el.style.transform = 'scale(1)';
+    },
+    preloadImg() {
+      let images = [];
+      for (let project of this.projects) {
+        if (project.slides.length > 1) {
+          images.push(project.slides[1]);
+        } else {
+          images.push(project.slides[0]);
+        }
+      }
+      images.forEach(el => {
+        let img = new Image();
+        img.src = require(`../../assets/projects/${el}`)
+      })
     }
   },
+  mounted() {
+    this.preloadImg()
+  }
 }
 </script>
 
