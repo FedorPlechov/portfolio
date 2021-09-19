@@ -2,12 +2,11 @@
   <div class="list_projects">
     <transition-group v-if="availableProjects.length > 0 " appear name="scale" tag="ul" class="container" v-scrollanimation>
       <li v-for="project in availableProjects" :key="project.id">
-        <div
-             :style="{background: 'url(' + require(`../../assets/projects/${project.fileName}`) + `) ${project.imgPosition}/cover `}"
-             class="projects"
-             @mouseenter="toggleWindowDetails(true, project)" @click="toggleWindowDetails(true, project)">
-
-        </div>
+        <img
+            :alt="project.projectName"
+            :src="require(`../../assets/projects/${project.fileName}`)"
+            class="projects"
+            @click="toggleWindowDetails(true, project)" @mouseenter="toggleWindowDetails(true, project)">
         <transition :css="false" appear @enter="enterWindow" @leave="leaveWindow" @before-enter="beforeEnterWindow"
                     @after-leave="afterLeaveWindow">
           <div v-if="project.details" class="window_details" @mouseleave="toggleWindowDetails(false, project)">

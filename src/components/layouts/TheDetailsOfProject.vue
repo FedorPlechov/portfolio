@@ -59,7 +59,7 @@ export default {
   computed: {
     isOneSlide(){
       return this.project.slides.length > 1;
-    }
+    },
   },
   methods: {
     toggleOpen(event) {

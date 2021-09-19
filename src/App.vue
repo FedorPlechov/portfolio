@@ -46,6 +46,7 @@ export default {
 html {
   width: 100%;
   scroll-behavior: smooth;
+  overflow-x:hidden;
 }
 body {
   font-family: 'Raleway', sans-serif;
