@@ -86,6 +86,9 @@ export default {
         }catch (err) {
           this.isConnection = false;
         }
+        this.name.value = '';
+        this.message.value = '';
+        this.email.value = '';
       }
     }
   }
