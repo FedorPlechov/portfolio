@@ -59,6 +59,11 @@ export default {
     clearError(payload) {
       payload.error = false;
     },
+    clearForm(){
+      this.name.value = '';
+      this.email.value = '';
+      this.message.value = '';
+    },
 
     async fetchData(){
       const data = `Name: ${this.name.value} \n email: ${this.email.value} \n message: ${this.message.value}`;
@@ -86,7 +91,9 @@ export default {
         }catch (err) {
           this.isConnection = false;
         }
+        this.clearForm()
       }
+
     }
   }
 }
